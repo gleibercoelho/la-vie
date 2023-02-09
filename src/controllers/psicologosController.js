@@ -10,8 +10,8 @@ const psicologosController = {
     },
     //lista dos psicologos
     listarPsicologosId: async (req, res) => {
-        const { id_psicologos } = req.params;
-        const listaDePsicologosId = await Psicologos.findByPk(id_psicologos);
+        const { id } = req.params;
+        const listaDePsicologosId = await Psicologos.findByPk(id);
         res.status(200).json(listaDePsicologosId);
 
     },
@@ -30,9 +30,9 @@ const psicologosController = {
 
     async deletarPsicologo(req, res) {
         try{
-        const { id_psicologos } = req.params;
+        const { id } = req.params;
         await Psicologos.destroy({
-            where: { id_psicologos, },
+            where: { id, },
         });
 
         res.status(204).json(res.status);
@@ -42,17 +42,18 @@ const psicologosController = {
     },
 
     async atualizarPsicologo(req, res) {
-        const { id_psicologos } = req.params;
+        const { id } = req.params;
         const { nome, email, senha, apresentacao } = req.body;
+        const newSenha = bcrypt.hashSync(senha, 10);
         const psicologoAtualizado = await Psicologos.update({
             nome,
             email,
-            senha,
+            senha: newSenha,
             apresentacao,
         },
             {
                 where: {
-                    id_psicologos,
+                    id,
                 },
             });
         res.status(200).json("Cadastro do Psicologo Atualizado");

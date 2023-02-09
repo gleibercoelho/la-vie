@@ -2,7 +2,7 @@ const database = require('../database');
 const { DataTypes } = require('sequelize');
 
 const Psicologos = database.define("psicologos", {
-    id_psicologos: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -27,7 +27,7 @@ const Psicologos = database.define("psicologos", {
     },
 },
     {
-        tablename: "Psicologos",
+        tablename: "psicologos",
     }
 );
 
