@@ -10,6 +10,7 @@ const psicologosController = {
     },
     //lista dos psicologos
     listarPsicologosId: async (req, res) => {
+        
         const { id } = req.params;
         const listaDePsicologosId = await Psicologos.findByPk(id);
         res.status(200).json(listaDePsicologosId);
@@ -17,6 +18,7 @@ const psicologosController = {
     },
 
     async cadastrarPsicologo(req, res) {
+        console.log(req.user);
         const { nome, email, senha, apresentacao } = req.body;
         const newSenha = bcrypt.hashSync(senha, 10);
         const novoPsicologo = await Psicologos.create({
