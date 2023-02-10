@@ -1,11 +1,11 @@
-var Sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 
-var database = new Sequelize('la_vie_saude_mental', 'root', 'mysql1010!', {
+const database = new Sequelize('la_vie_saude_mental', 'root', '########', {
     host: 'localhost',
     dialect: 'mysql'
 });
 
-var conexao = database.authenticate()
+const conexao = database.authenticate()
     .then(function () {
         console.log('conexao com o Mysql foi estabelecida com sucesso');
     })
