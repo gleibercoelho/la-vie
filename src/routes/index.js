@@ -25,8 +25,8 @@ routes.put("/pacientes/:id", pacienteController.atualizarPsicologo);
 routes.get("/atendimentos", requestLog, atendimentoController.listarAtendimento);
 routes.get("/atendimentos/:id", atendimentoController.listaAtendimento);
 routes.post("atendimento", atendimentoController.cadastroAtendimento);
-routes.delete("/pacientes/:id", atendimentoController.deleteAtendimento);
-routes.put("/pacientes/:id", atendimentoController.atualizarAtendimento);
+routes.delete("/atendimento/:id", atendimentoController.deleteAtendimento);
+routes.put("/atendimento/:id", atendimentoController.atualizarAtendimento);
 
 routes.post("/atendimento", requestLog, bloqueio, psicologosController.listarPsicologos);
 
