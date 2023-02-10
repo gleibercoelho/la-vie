@@ -1,6 +1,6 @@
 const express = require("express");
 const routes = require ('../routes');
-
+const handleError = require("../middlewares/handleError");
 const database = require("../database/index");
 
 const server = express();
@@ -21,5 +21,6 @@ server.use(express.json());
 
 server.use(routes);
 
+server.use(handleError);
 
 server.listen(3000, () => console.log("Ola gleiber"));  
