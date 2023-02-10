@@ -3,7 +3,7 @@ const psicologosController = require("../controllers/psicologosController");
 const authController = require("../controllers/authenticateController")
 const requestLog = require("../middlewares/requestLog");
 const bloqueio = require("../middlewares/bloqueio");
-const usuarioCreatValidation = require("../validations/usuarios");
+/* const usuarioCreatValidation = require("../validations/usuarios"); */
 const AuthLoginValidation = require("../validations/login");
 const auth = require('../middlewares/auth')  
 const routes = express.Router();
@@ -22,7 +22,7 @@ routes.post("/pacientes", psicologosController.cadastrarPsicologo);
 routes.delete("/pacientes/:id", psicologosController.deletarPsicologo);
 routes.put("/pacientes/:id", psicologosController.atualizarPsicologo);
 
-routes.post("/atendimento", requestLog, bloqueio, usuarioCreatValidation, psicologosController.listarPsicologos);
+routes.post("/atendimento", requestLog, bloqueio, /* usuarioCreatValidation, */ psicologosController.listarPsicologos);
 routes.post("/login", AuthLoginValidation, authController.login);
 
 

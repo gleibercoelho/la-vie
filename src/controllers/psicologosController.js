@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const psicologosController = {
     listarPsicologos: async (req, res) => {
-
+        
         const listaDePsicologos = await Psicologos.findAll();
         res.status(200).json(listaDePsicologos);
 
@@ -18,14 +18,15 @@ const psicologosController = {
     },
 
     async cadastrarPsicologo(req, res) {
-        console.log(req.user);
+        
         const { nome, email, senha, apresentacao } = req.body;
         const newSenha = bcrypt.hashSync(senha, 10);
+        const psicologoid = req.auth.id;
         const novoPsicologo = await Psicologos.create({
             nome,
             email,
             senha: newSenha,
-            apresentacao,
+            apresentacao: psicologoid,
         })
         res.status(201).json(novoPsicologo);
     },
