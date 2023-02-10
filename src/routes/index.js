@@ -20,7 +20,7 @@ routes.get("/pacientes", requestLog, pacienteController.listarPacientes);
 routes.get("/pacientes/:id", pacienteController.listaPacientes);
 routes.post("/pacientes", pacienteController.cadastrarPaciente);
 routes.delete("/pacientes/:id", pacienteController.deletePaciente);
-routes.put("/pacientes/:id", pacienteController.atualizarPsicologo);
+routes.put("/pacientes/:id", pacienteController.atualizarPaciente);
 
 routes.get("/atendimentos", requestLog, atendimentoController.listarAtendimento);
 routes.get("/atendimentos/:id", atendimentoController.listaAtendimento);
