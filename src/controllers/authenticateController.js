@@ -1,4 +1,5 @@
 const Psicologos = require("../models/Psicologos");
+const Atendimentos = require("../models/index");
 const jwt = require("jsonwebtoken");
 const secret = require("../configs/secret");
 const bcrypt = require("bcrypt");

@@ -1,28 +1,31 @@
-const {Atendimento} = require ("../models");
-const bcrypt = require('bcrypt');
+const {Atendimentos} = require ("../models/index");
+const jwt = require("jsonwebtoken");
+const secret = require("../configs/secret");
+
 
 const atendimentoController = {
     listarAtendimento: async (req, res) => {
-        const listarAtendimento = await Atendimento.findAll();
+        const listarAtendimento = await Atendimentos.findAll();
         res.status(200).json(listarAtendimento);
-    },
+    }, 
 
     //listar atendimentos
-    listaAtendimento: async (req, res) => {
-        const {id_atendimento} = req.params;
-        const listaAtendimento = await Atendimento.findByPk
-        (id_atendimento);
+    listaAtendimentoId: async (req, res) => {
+        const {id} = req.params;
+        const listaAtendimento = await Atendimentos.findByPk(id);
         res.status(200).json(listaAtendimento);
     },
 
     //cadastrar atendimentos
     async cadastroAtendimento(req, res) {
-        const {data_atendimento, observacao} = req.body;
-        const novoAtendimento = await Atendimento.create({
+        const { data_atendimento, observacao, id_paciente, id_psicologo } = req.body;
+        const psicologoid = req.auth.id;
+        const novoAtendimento = await Atendimentos.create({
             data_atendimento,
             observacao,
-            id_psicologo,
-            id_paciente
+            id_paciente,
+            id_psicologo: psicologoid,         
+            
         });
         res.status(201).json(novoAtendimento);
     },

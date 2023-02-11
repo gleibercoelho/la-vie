@@ -13,7 +13,7 @@ CREATE TABLE `la_vie_saude_mental`.`psicologos` (
 
 
 CREATE TABLE `la_vie_saude_mental`.`pacientes` (
-  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `idade` DATE NOT NULL,
@@ -23,10 +23,10 @@ CREATE TABLE `la_vie_saude_mental`.`pacientes` (
 
 
 CREATE TABLE `la_vie_saude_mental`.`atendimentos` (
-  `id` INT UNSIGNED NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `data_atendimento` DATETIME NOT NULL,
-  `observação` VARCHAR(255) NOT NULL,
-  `id_paciente` INT UNSIGNED NOT NULL,  
+  `observacao` VARCHAR(255) NOT NULL,
+  `id_paciente` INT NOT NULL,  
   `id_psicologo` INT NOT NULL,
   `createdat` timestamp,
   `updatedat` timestamp,

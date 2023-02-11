@@ -3,14 +3,14 @@ const { DataTypes } = require('sequelize');
 const Pacientes = require('./Pacientes');
 const Psicologos = require('./Psicologos');
 
-const Atendimento = database.define("atendimento", {
-    id_atendimento: {
+const Atendimentos = database.define("atendimentos", {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
     },
     data_atendimento: {
-        type: DataTypes.STRING,
+        type: DataTypes.DATE,
     },
     observacao: {
         type: DataTypes.STRING,
@@ -23,7 +23,7 @@ const Atendimento = database.define("atendimento", {
         }
     },
     id_psicologo:{
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         references: {
             model: Psicologos,
             key: 'id'
@@ -41,4 +41,4 @@ const Atendimento = database.define("atendimento", {
     }
 );
 
-module.exports = Atendimento;
+module.exports = Atendimentos;

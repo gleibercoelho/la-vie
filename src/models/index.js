@@ -1,25 +1,25 @@
-const Atendimento = require ("./Atendimento")
+const Atendimentos = require ("./Atendimentos")
 const Pacientes = require ("./Pacientes")
 const Psicologos = require ("./Psicologos")
 
-Pacientes.belongsTo(Atendimento, {
+Atendimentos.belongsTo(Pacientes, {
     foreignKey: "id_paciente",
 });
 
-Psicologos.belongsTo(Atendimento, {
+Atendimentos.belongsTo(Psicologos, {
     foreignKey: "id_psicologo",
 });
 
-// descomentar e verificar qual deles vai dar bom
+Pacientes.hasMany(Atendimentos, {
+    foreignKey: "id_paciente",
+})
 
-// Pacientes.hasMany(Atendimento);
-// Psicologos.hasMany(Atendimento);
-
-// Atendimento.belongsTo(Pacientes);
-// Atendimento.belongsTo(Psicologos);
+Psicologos.hasMany(Atendimentos, {
+    foreignKey: "id_psicologo",
+});
 
 module.exports = {
-    Atendimento,
+    Atendimentos,
     Pacientes,
-    Psicologos,
+    Psicologos
 };

@@ -14,23 +14,20 @@ const routes = express.Router();
 
 routes.get("/psicologos", requestLog, psicologosController.listarPsicologos);
 routes.get("/psicologos/:id", psicologosController.listarPsicologosId);
-routes.post("/psicologos", auth, psicologosController.cadastrarPsicologo);
+routes.post("/psicologos", psicologosController.cadastrarPsicologo);
 routes.delete("/psicologos/:id", psicologosController.deletarPsicologo);
 routes.put("/psicologos/:id", psicologosController.atualizarPsicologo);
 
 routes.get("/pacientes", requestLog, pacienteController.listarPacientes);
-routes.get("/pacientes/:id", pacienteController.listaPacientes);
+routes.get("/pacientes/:id", pacienteController.listarPacientesId);
 routes.post("/pacientes", pacienteController.cadastrarPaciente);
 routes.delete("/pacientes/:id", pacienteController.deletePaciente);
 routes.put("/pacientes/:id", pacienteController.atualizarPaciente);
 
-routes.get("/atendimentos", requestLog, atendimentoController.listarAtendimento);
-routes.get("/atendimentos/:id", atendimentoController.listaAtendimento);
-routes.post("atendimento", atendimentoController.cadastroAtendimento);
-routes.delete("/atendimento/:id", atendimentoController.deleteAtendimento);
-routes.put("/atendimento/:id", atendimentoController.atualizarAtendimento);
+routes.get("/atendimentos", atendimentoController.listarAtendimento);
+routes.get("/atendimentos/:id", atendimentoController.listaAtendimentoId);
+routes.post("atendimentos", auth, atendimentoController.cadastroAtendimento);
 
-routes.post("/atendimento", requestLog, bloqueio, /* usuarioCreatValidation, */ psicologosController.listarPsicologos);
 routes.post("/login", AuthLoginValidation, authController.login);
 
 

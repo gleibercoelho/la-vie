@@ -1,4 +1,4 @@
-const Psicologos = require("../models/Psicologos");
+const {Psicologos} = require("../models/index");
 const bcrypt = require('bcrypt');
 
 const psicologosController = {
@@ -21,12 +21,11 @@ const psicologosController = {
         
         const { nome, email, senha, apresentacao } = req.body;
         const newSenha = bcrypt.hashSync(senha, 10);
-        const psicologoid = req.auth.id;
         const novoPsicologo = await Psicologos.create({
             nome,
             email,
             senha: newSenha,
-            apresentacao: psicologoid,
+            apresentacao,
         })
         res.status(201).json(novoPsicologo);
     },

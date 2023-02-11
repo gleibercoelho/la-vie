@@ -1,6 +1,5 @@
-// const pacientes = require("../models/Pacientes");
-const {Pacientes} = require("../models");
-const bcrypt = require('bcrypt');
+const {Pacientes} = require("../models/index");
+
 
 const pacientesController = {
     listarPacientes: async (req, res) => {
@@ -9,9 +8,9 @@ const pacientesController = {
     },
 
     //Listar Paciente
-    listaPacientes: async (req, res) => {
-        const { id_paciente } = req.params;
-        const listaPacientes = await Pacientes.findByPk (id_paciente);
+    listarPacientesId: async (req, res) => {
+        const { id } = req.params;
+        const listaPacientes = await Pacientes.findByPk (id);
         res.status(200).json(listaPacientes);
     },
     //cadastro de paciente
@@ -21,16 +20,16 @@ const pacientesController = {
             nome,
             email,
             idade,
-            id
+            
         });
         res.status(201).json(pacienteNovo);
     },
     //deletar paciente
     async deletePaciente(req, res) {
         try{
-            const { id_paciente } = req.params;
+            const { id } = req.params;
             await Pacientes.destroy({
-                where: { id_paciente, },
+                where: { id },
             });
 
             res.status(204).json(res.status);
