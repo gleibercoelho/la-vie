@@ -9,6 +9,9 @@ const Psicologos = database.define("psicologos", {
     },
     nome: {
         type: DataTypes.STRING,
+        validate:{
+            notEmpty: true,
+        }
     },
     email: {
         type: DataTypes.STRING,

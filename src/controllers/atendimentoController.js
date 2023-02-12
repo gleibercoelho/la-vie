@@ -12,12 +12,17 @@ const atendimentoController = {
     //listar atendimentos
     listaAtendimentoId: async (req, res) => {
         const {id} = req.params;
-        const listaAtendimento = await Atendimentos.findByPk(id);
-        res.status(200).json(listaAtendimento);
+        const listaAtendimentoId = await Atendimentos.findByPk(id);
+        if (!listaAtendimentoId){
+            res.status(404).json("Id não encontrado");
+            return;
+        }
+        res.status(200).json(listaAtendimentoId);
     },
 
     //cadastrar atendimentos
     async cadastroAtendimento(req, res) {
+        try{
         const { data_atendimento, observacao, id_paciente, id_psicologo } = req.body;
         const psicologoid = req.auth.id;
         const novoAtendimento = await Atendimentos.create({
@@ -27,40 +32,11 @@ const atendimentoController = {
             id_psicologo: psicologoid,         
             
         });
-        res.status(201).json(novoAtendimento);
+        res.status(201).json(novoAtendimento);}
+        catch(error){res.status(400).json("Erro na requisição. Todos os campos são obrigatórios");}
     },
-
-    //atualizar atendimento
-    async atualizarAtendimento(req, res) {
-        const {id} = req.params;
-        const {data_atendimento, observacao} = req.body;
-        const novoAtendimento = Atendimento.update({
-            data_atendimento,
-            observacao
-        },
-            {
-                where:{
-                    id,
-                },
-            });
-        res.status(200).json("Atendimento atualizado");
-        
-    },
-
-    //deletar atendimento
-
-    async deleteAtendimento (req, res) {
-        try{
-            const {id_atendimento} = req.params;
-            await Atendimento.destroy({
-                where: { id_atendimento,},
-            });
-
-            res.status(204).json(res.status);
-        } catch(error){
-            return res.status(404).json("Atendimento apagado com sucesso!");
-        }
-    }
-};
+   
+}
+    
 
 module.exports = atendimentoController;

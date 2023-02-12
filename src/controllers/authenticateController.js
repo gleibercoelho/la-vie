@@ -13,13 +13,13 @@ const authController = {
                 email,
             }
         });
-        if (!usuario) {
-            return res.status(400).json("email não cadastrado!");
+        if (!usuario  || !bcrypt.compareSync(senha, usuario.senha)) {
+            return res.status(401).json("E-mail ou senha inválido, verifique e tente novamente");
         }
-        if (!bcrypt.compareSync(senha, usuario.senha)) {
+   /*      if (!bcrypt.compareSync(senha, usuario.senha)) {
             return res.status(401).json("senha invalida")
         }
-
+ */
         const token = jwt.sign(
             {
                 id: usuario.id,
